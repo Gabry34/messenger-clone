@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: white;
+}
+
+/* Marketplace.css */
+
+.scroll-container::-webkit-scrollbar {
+  background: #f1f1f1; /* Colore di sfondo della scrollbar */
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background: black; /* Colore del pulsante di scorrimento */
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Colore della traccia della scrollbar */
+}
+
+.custom-shadow {
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+}
+
+.with-shadow {
+  box-shadow: 1px 3px 6px 6px rgba(0, 0, 0, 0.1); /* Adjust the values as needed */
+}
