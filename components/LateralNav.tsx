@@ -16,9 +16,13 @@ interface LateralNavProps {
   searchParams: any;
 }
 
-export default function LateralNav({ searchParams }: LateralNavProps) {
+export default function LateralNav({ searchParams, passSection }: any) {
   const [expand, setExpand] = useState(false);
   const { data: session } = useSession();
+
+  const setSection = (section: string) => {
+    passSection(section);
+  };
   return (
     <div
       className={`h-full border-r flex flex-col justify-between py-3 ${
@@ -37,6 +41,9 @@ export default function LateralNav({ searchParams }: LateralNavProps) {
               section: "chat",
               rightSide: searchParams.rightSide,
             },
+          }}
+          onClick={() => {
+            setSection("chat");
           }}
         >
           <TbMessageCircle2Filled
@@ -57,6 +64,9 @@ export default function LateralNav({ searchParams }: LateralNavProps) {
               rightSide: searchParams.rightSide,
             },
           }}
+          onClick={() => {
+            setSection("people");
+          }}
         >
           <IoPeople
             size={23}
@@ -75,6 +85,9 @@ export default function LateralNav({ searchParams }: LateralNavProps) {
               section: "marketplace",
               rightSide: searchParams.rightSide,
             },
+          }}
+          onClick={() => {
+            setSection("marketplace");
           }}
         >
           <HiMiniBuildingStorefront
@@ -97,6 +110,9 @@ export default function LateralNav({ searchParams }: LateralNavProps) {
               rightSide: searchParams.rightSide,
             },
           }}
+          onClick={() => {
+            setSection("requests");
+          }}
         >
           <IoChatbubbleEllipsesSharp
             size={20}
@@ -115,6 +131,9 @@ export default function LateralNav({ searchParams }: LateralNavProps) {
               section: "archive",
               rightSide: searchParams.rightSide,
             },
+          }}
+          onClick={() => {
+            setSection("archive");
           }}
         >
           <BsFillArchiveFill

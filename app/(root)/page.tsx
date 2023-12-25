@@ -12,7 +12,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
-
+//up
 interface SearchParams {
   searchParams: string;
   section: string;
@@ -22,6 +22,7 @@ interface SearchParams {
 export default function Home({ searchParams }: { searchParams: SearchParams }) {
   const { data: session, status } = useSession();
   const [userData, setUserData] = useState({});
+  const [section, setSection] = useState("chat");
   const router = useRouter();
   const socket = io("http://localhost:8080");
 
@@ -40,6 +41,9 @@ export default function Home({ searchParams }: { searchParams: SearchParams }) {
     setUserData(data);
   };
 
+  const handleSection = (data: any) => {
+    setSection(data);
+  };
   return (
     <main className="w-screen h-screen flex">
       {status === "loading" ? (
@@ -55,20 +59,23 @@ export default function Home({ searchParams }: { searchParams: SearchParams }) {
       ) : (
         <div className="w-full max-h-screen flex overflow-y-scroll">
           <div className="w-fit h-full flex">
-            <LateralNav searchParams={searchParams} />
-            {searchParams.section == "chat" && (
+            <LateralNav
+              searchParams={searchParams}
+              passSection={handleSection}
+            />
+            {section === "chat" ? (
               <Chat
                 passUserData={handleUserData}
                 searchParams={searchParams}
                 socket={socket}
               />
-            )}
-            {searchParams.section === "people" && <People />}
-            {searchParams.section === "marketplace" && <Marketplace />}
-            {searchParams.section === "requests" && <Requests />}
-            {searchParams.section === "archive" && (
+            ) : null}
+            {section === "people" ? <People /> : null}
+            {section === "marketplace" ? <Marketplace /> : null}
+            {section === "requests" ? <Requests /> : null}
+            {section === "archive" ? (
               <Archive searchParams={searchParams} />
-            )}
+            ) : null}
           </div>
           <div className="h-full w-full">
             <MiddleChat searchParams={searchParams} socket={socket} />
