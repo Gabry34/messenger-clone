@@ -18,9 +18,10 @@ interface LateralNavProps {
 
 export default function LateralNav({ searchParams, passSection }: any) {
   const [expand, setExpand] = useState(false);
+  const [section, setSection] = useState("chat");
   const { data: session } = useSession();
 
-  const setSection = (section: string) => {
+  const setSectionLateral = (section: string) => {
     passSection(section);
   };
   return (
@@ -30,87 +31,67 @@ export default function LateralNav({ searchParams, passSection }: any) {
       }`}
     >
       <div className={`flex flex-col ${expand ? "w-full" : ""}`}>
-        <Link
+        <div
           className={`p-[10px] rounded-lg flex items-center gap-3 ${
-            searchParams.section === "chat" ? "bg-[#F5F5F5]" : "bg-white"
+            section === "chat" ? "bg-[#F5F5F5]" : "bg-white"
           } ${
             expand ? "min-w-full justify-start" : "justify-center"
           } hover:bg-[#F5F5F5]`}
-          href={{
-            query: {
-              section: "chat",
-              rightSide: searchParams.rightSide,
-            },
-          }}
           onClick={() => {
+            setSectionLateral("chat");
             setSection("chat");
           }}
         >
           <TbMessageCircle2Filled
             size={21}
-            color={searchParams.section === "chat" ? "black" : "#65676B"}
+            color={section === "chat" ? "black" : "#65676B"}
           />
           {expand ? <h1 className="text-black font-medium">Chat</h1> : null}
-        </Link>
-        <Link
+        </div>
+        <div
           className={`p-[10px] rounded-lg flex items-center gap-3 ${
-            searchParams.section === "people" ? "bg-[#F5F5F5]" : "bg-white"
+            section === "people" ? "bg-[#F5F5F5]" : "bg-white"
           } ${
             expand ? "min-w-full justify-start" : "justify-center"
           } hover:bg-[#F5F5F5]`}
-          href={{
-            query: {
-              section: "people",
-              rightSide: searchParams.rightSide,
-            },
-          }}
           onClick={() => {
+            setSectionLateral("people");
             setSection("people");
           }}
         >
           <IoPeople
             size={23}
-            color={searchParams.section === "people" ? "black" : "#65676B"}
+            color={section === "people" ? "black" : "#65676B"}
           />
           {expand ? <h1 className="text-black font-medium">People</h1> : null}
-        </Link>
-        <Link
+        </div>
+        <div
           className={`p-[10px] rounded-lg flex items-center gap-3 ${
-            searchParams.section === "marketplace" ? "bg-[#F5F5F5]" : "bg-white"
+            section === "marketplace" ? "bg-[#F5F5F5]" : "bg-white"
           } ${
             expand ? "min-w-full justify-start" : "justify-center"
           } hover:bg-[#F5F5F5]`}
-          href={{
-            query: {
-              section: "marketplace",
-              rightSide: searchParams.rightSide,
-            },
-          }}
           onClick={() => {
+            setSectionLateral("marketplace");
             setSection("marketplace");
           }}
         >
           <HiMiniBuildingStorefront
             size={20}
-            color={searchParams.section === "marketplace" ? "black" : "#65676B"}
+            color={section === "marketplace" ? "black" : "#65676B"}
           />
           {expand ? (
             <h1 className="text-black font-medium">Marketplace</h1>
           ) : null}
-        </Link>
-        <Link
+        </div>
+        <div
           className={`p-[10px] rounded-lg flex items-center gap-3 ${
-            searchParams.section === "requests" ? "bg-[#F5F5F5]" : "bg-white"
+            section === "requests" ? "bg-[#F5F5F5]" : "bg-white"
           } ${
             expand ? "min-w-full justify-start" : "justify-center"
           } hover:bg-[#F5F5F5]`}
-          href={{
-            query: {
-              section: "requests",
-              rightSide: searchParams.rightSide,
-            },
-          }}
           onClick={() => {
+            setSectionLateral("requests");
             setSection("requests");
           }}
         >
@@ -119,20 +100,15 @@ export default function LateralNav({ searchParams, passSection }: any) {
             color={searchParams.section === "requests" ? "black" : "#65676B"}
           />
           {expand ? <h1 className="text-black font-medium">Requests</h1> : null}
-        </Link>
-        <Link
+        </div>
+        <div
           className={`p-[10px] rounded-lg flex items-center gap-3 ${
-            searchParams.section === "archive" ? "bg-[#F5F5F5]" : "bg-white"
+            section === "archive" ? "bg-[#F5F5F5]" : "bg-white"
           } ${
             expand ? "min-w-full justify-start" : "justify-center"
           } hover:bg-[#F5F5F5]`}
-          href={{
-            query: {
-              section: "archive",
-              rightSide: searchParams.rightSide,
-            },
-          }}
           onClick={() => {
+            setSectionLateral("archive");
             setSection("archive");
           }}
         >
@@ -141,7 +117,7 @@ export default function LateralNav({ searchParams, passSection }: any) {
             color={searchParams.section === "archive" ? "black" : "#65676B"}
           />
           {expand ? <h1 className="text-black font-medium">Archive</h1> : null}
-        </Link>
+        </div>
       </div>
       <div
         className={`w-full flex gap-2 items-center ${
