@@ -40,7 +40,7 @@ export default function ChatterAvatar({
     const getUserInfo = async () => {
       try {
         const res = await fetch(
-          `http://localhost:3000/api/userInfo?email=${person}`,
+          `https://messenger-clone-peach-two.vercel.app/api/userInfo?email=${person}`,
           {
             cache: "no-store",
           }
@@ -100,7 +100,7 @@ export default function ChatterAvatar({
         );
 
         router.push(
-          `http://localhost:3000/?section=${searchParams.section}&rightSide=${searchParams.rightSide}&w=y`
+          `https://messenger-clone-peach-two.vercel.app/?section=${searchParams.section}&rightSide=${searchParams.rightSide}&w=y`
         );
       }}
     >

@@ -13,7 +13,7 @@ export default function DeleteChat({ chatId }: any) {
     if (confirm) {
       try {
         const res = await fetch(
-          `http://localhost:3000/api/message?id=${chatId}`,
+          `https://messenger-clone-peach-two.vercel.app/api/message?id=${chatId}`,
           {
             method: "DELETE",
           }

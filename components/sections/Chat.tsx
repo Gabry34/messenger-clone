@@ -56,9 +56,12 @@ export default function Chat({ passUserData, searchParams, socket }: any) {
 
   const getUserInfo = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/userInfo", {
-        cache: "no-store",
-      });
+      const res = await fetch(
+        "https://messenger-clone-peach-two.vercel.app/api/userInfo",
+        {
+          cache: "no-store",
+        }
+      );
       if (!res.ok) {
         throw new Error("Failed to fetch userInfo");
       }
@@ -77,9 +80,12 @@ export default function Chat({ passUserData, searchParams, socket }: any) {
 
   const getChats = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/message", {
-        cache: "no-store",
-      });
+      const res = await fetch(
+        "https://messenger-clone-peach-two.vercel.app/api/message",
+        {
+          cache: "no-store",
+        }
+      );
       if (!res.ok) {
         throw new Error("Failed to fetch userInfo");
       }
@@ -188,7 +194,7 @@ export default function Chat({ passUserData, searchParams, socket }: any) {
                   setOpenSearch("closed");
 
                   router.push(
-                    `http://localhost:3000/?section=${searchParams.section}&rightSide=${searchParams.rightSide}&w=y`
+                    `https://messenger-clone-peach-two.vercel.app/?section=${searchParams.section}&rightSide=${searchParams.rightSide}&w=y`
                   );
                 }}
               >

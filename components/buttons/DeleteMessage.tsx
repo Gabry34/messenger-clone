@@ -9,7 +9,7 @@ export default function DeleteMessage({ messageId, chatId, socket }: any) {
     );
     if (confirm) {
       const response = await fetch(
-        `http://localhost:3000/api/message/${chatId}`,
+        `https://messenger-clone-peach-two.vercel.app/api/message/${chatId}`,
         {
           cache: "no-store",
         }
@@ -22,15 +22,18 @@ export default function DeleteMessage({ messageId, chatId, socket }: any) {
 
       // Aggiorna i messaggi della chat
       try {
-        const res = await fetch(`http://localhost:3000/api/message/${chatId}`, {
-          method: "PUT",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify({
-            newMessages: updatedMessages,
-          }),
-        });
+        const res = await fetch(
+          `https://messenger-clone-peach-two.vercel.app/api/message/${chatId}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify({
+              newMessages: updatedMessages,
+            }),
+          }
+        );
 
         if (!res.ok) {
           throw new Error("Failed to update chat");
