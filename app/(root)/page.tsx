@@ -12,7 +12,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
-//up
+
 interface SearchParams {
   searchParams: string;
   section: string;
@@ -30,11 +30,11 @@ export default function Home({ searchParams }: { searchParams: SearchParams }) {
     router.replace(queryString);
   }, [router]);
 
-  if (status !== "loading") {
-    if (!session) {
-      router.push("/login");
-    }
-  }
+  // if (status !== "loading") {
+  //   if (!session) {
+  //     router.push("/login");
+  //   }
+  // }
 
   const handleUserData = (data: any) => {
     setUserData(data);
@@ -56,19 +56,19 @@ export default function Home({ searchParams }: { searchParams: SearchParams }) {
         <div className="w-full max-h-screen flex overflow-y-scroll">
           <div className="w-fit h-full flex">
             <LateralNav searchParams={searchParams} />
-            {searchParams.section === "chat" ? (
-              <Chat
-                passUserData={handleUserData}
-                searchParams={searchParams}
-                socket={socket}
-              />
-            ) : null}
-            {searchParams.section === "people" ? <People /> : null}
-            {searchParams.section === "marketplace" ? <Marketplace /> : null}
-            {searchParams.section === "requests" ? <Requests /> : null}
-            {searchParams.section === "archive" ? (
+
+            <Chat
+              passUserData={handleUserData}
+              searchParams={searchParams}
+              socket={socket}
+            />
+
+            {searchParams.section === "people" && <People />}
+            {searchParams.section === "marketplace" && <Marketplace />}
+            {searchParams.section === "requests" && <Requests />}
+            {searchParams.section === "archive" && (
               <Archive searchParams={searchParams} />
-            ) : null}
+            )}
           </div>
           <div className="h-full w-full">
             <MiddleChat searchParams={searchParams} socket={socket} />

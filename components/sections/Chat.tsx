@@ -194,7 +194,7 @@ export default function Chat({ passUserData, searchParams, socket }: any) {
                   setOpenSearch("closed");
 
                   router.push(
-                    `https://messenger-clone-peach-two.vercel.app/?section=${searchParams.section}&rightSide=${searchParams.rightSide}&w=y`
+                    `https://messenger-clone-peach-two.vercel.app/?section=${searchParams.section}&rightSide=${searchParams.rightSide}`
                   );
                 }}
               >
