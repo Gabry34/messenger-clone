@@ -23,13 +23,18 @@ interface UserData {
   image?: string;
 }
 
-export default function MiddleChat({ searchParams, socket }: any) {
+export default function MiddleChat({
+  searchParams,
+  socket,
+  setStateRightSide,
+}: any) {
   const [input, setInput] = useState("");
   const [userData, setUserData] = useState<UserData>({});
   const [filePopupVisible, setFilePopupVisible] = useState(false);
   const [selectedFile, setSelectedFile] = useState<any>("");
   const [images, setImages] = useState([]);
   const [resetImages, setResetImages] = useState<boolean[]>([]);
+  const [rightSide, setRightSide] = useState("open");
 
   useEffect(() => {
     const storedUserData = localStorage.getItem("userData");
@@ -68,6 +73,10 @@ export default function MiddleChat({ searchParams, socket }: any) {
 
   const handleImages = (data: any) => {
     setImages(data);
+  };
+
+  const setStateRight = (state: string) => {
+    setStateRightSide(state);
   };
 
   return (
@@ -111,13 +120,11 @@ export default function MiddleChat({ searchParams, socket }: any) {
             color={"#0976F2"}
             className="cursor-not-allowed"
           />
-          {searchParams.rightSide === "open" ? (
-            <Link
-              href={{
-                query: {
-                  section: searchParams.section,
-                  rightSide: "closed",
-                },
+          {rightSide === "open" ? (
+            <div
+              onClick={() => {
+                setStateRight("closed");
+                setRightSide("closed");
               }}
             >
               <PiDotsThreeCircleFill
@@ -125,14 +132,12 @@ export default function MiddleChat({ searchParams, socket }: any) {
                 color={"#0976F2"}
                 className="cursor-pointer"
               />
-            </Link>
+            </div>
           ) : (
-            <Link
-              href={{
-                query: {
-                  section: searchParams.section,
-                  rightSide: "open",
-                },
+            <div
+              onClick={() => {
+                setStateRight("open");
+                setRightSide("open");
               }}
             >
               <HiOutlineDotsHorizontal
@@ -140,7 +145,7 @@ export default function MiddleChat({ searchParams, socket }: any) {
                 color={"#0976F2"}
                 className="cursor-pointer"
               />
-            </Link>
+            </div>
           )}
         </div>
       </div>

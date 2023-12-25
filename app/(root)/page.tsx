@@ -23,6 +23,7 @@ export default function Home({ searchParams }: { searchParams: SearchParams }) {
   const { data: session, status } = useSession();
   const [userData, setUserData] = useState({});
   const [section, setSection] = useState("chat");
+  const [rightSide, setRightSide] = useState("open");
   const router = useRouter();
   const socket = io("http://localhost:8080");
 
@@ -43,6 +44,10 @@ export default function Home({ searchParams }: { searchParams: SearchParams }) {
 
   const handleSection = (data: any) => {
     setSection(data);
+  };
+
+  const handleRightSide = (data: string) => {
+    setRightSide(data);
   };
   return (
     <main className="w-screen h-screen flex">
@@ -78,11 +83,15 @@ export default function Home({ searchParams }: { searchParams: SearchParams }) {
             ) : null}
           </div>
           <div className="h-full w-full">
-            <MiddleChat searchParams={searchParams} socket={socket} />
+            <MiddleChat
+              searchParams={searchParams}
+              socket={socket}
+              setStateRightSide={handleRightSide}
+            />
           </div>
           <div
             className={`${
-              searchParams.rightSide === "closed" ? "hidden" : ""
+              rightSide === "closed" ? "hidden" : ""
             } min-w-[380px] border-l`}
           >
             <RightContainer searchParams={searchParams} />
