@@ -56,13 +56,13 @@ export default function Home({ searchParams }: { searchParams: SearchParams }) {
         <div className="w-full max-h-screen flex overflow-y-scroll">
           <div className="w-fit h-full flex">
             <LateralNav searchParams={searchParams} />
-
-            <Chat
-              passUserData={handleUserData}
-              searchParams={searchParams}
-              socket={socket}
-            />
-
+            {searchParams.section == "chat" && (
+              <Chat
+                passUserData={handleUserData}
+                searchParams={searchParams}
+                socket={socket}
+              />
+            )}
             {searchParams.section === "people" && <People />}
             {searchParams.section === "marketplace" && <Marketplace />}
             {searchParams.section === "requests" && <Requests />}
