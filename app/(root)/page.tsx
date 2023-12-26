@@ -21,7 +21,7 @@ export default function Home() {
   const [section, setSection] = useState("chat");
   const [rightSide, setRightSide] = useState("open");
   const router = useRouter();
-  const socket = io("https://messenger-clone-peach-two.vercel.app");
+  const socket = io("http://localhost:8080");
 
   if (status !== "loading") {
     if (!session) {
