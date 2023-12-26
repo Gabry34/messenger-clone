@@ -42,7 +42,7 @@ export default function Chat({ socket, userData }: any) {
   const getUserInfo = async () => {
     try {
       const res = await fetch(
-        "messenger-clone-n60evtay3-gabry34.vercel.app/api/userInfo",
+        "https://messenger-clone-peach-two.vercel.app/api/userInfo",
         {
           cache: "no-store",
         }
@@ -66,7 +66,7 @@ export default function Chat({ socket, userData }: any) {
   const getChats = async () => {
     try {
       const res = await fetch(
-        "messenger-clone-n60evtay3-gabry34.vercel.app/api/message",
+        "https://messenger-clone-peach-two.vercel.app/api/message",
         {
           cache: "no-store",
         }

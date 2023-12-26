@@ -15,7 +15,7 @@ export default function ArchiveChat({ isArchived, chatId }: any) {
   const archiveChat = async () => {
     try {
       const res = await fetch(
-        "messenger-clone-n60evtay3-gabry34.vercel.app/api/userInfo",
+        "https://messenger-clone-peach-two.vercel.app/api/userInfo",
         {
           cache: "no-store",
         }
@@ -39,7 +39,7 @@ export default function ArchiveChat({ isArchived, chatId }: any) {
           try {
             const updatedArchive = [...archived, chatId];
             const res = await fetch(
-              `messenger-clone-n60evtay3-gabry34.vercel.app/api/userInfo/${userId}`,
+              `https://messenger-clone-peach-two.vercel.app/api/userInfo/${userId}`,
               {
                 method: "PUT",
                 headers: {
@@ -69,7 +69,7 @@ export default function ArchiveChat({ isArchived, chatId }: any) {
   const unarchiveChat = async () => {
     try {
       const res = await fetch(
-        "messenger-clone-n60evtay3-gabry34.vercel.app/api/userInfo",
+        "https://messenger-clone-peach-two.vercel.app/api/userInfo",
         {
           cache: "no-store",
         }
@@ -93,7 +93,7 @@ export default function ArchiveChat({ isArchived, chatId }: any) {
           try {
             const updatedArchive = archived.filter((id) => id !== chatId);
             const res = await fetch(
-              `messenger-clone-n60evtay3-gabry34.vercel.app/api/userInfo/${userId}`,
+              `https://messenger-clone-peach-two.vercel.app/api/userInfo/${userId}`,
               {
                 method: "PUT",
                 headers: {

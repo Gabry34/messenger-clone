@@ -18,7 +18,7 @@ export default function Marketplace({ userData, socket }: any) {
   const getChats = async () => {
     try {
       const res = await fetch(
-        "messenger-clone-n60evtay3-gabry34.vercel.app/api/message",
+        "https://messenger-clone-peach-two.vercel.app/api/message",
         {
           cache: "no-store",
         }
@@ -37,7 +37,7 @@ export default function Marketplace({ userData, socket }: any) {
   const getArchivedChats = async () => {
     try {
       const res = await fetch(
-        "messenger-clone-n60evtay3-gabry34.vercel.app/api/userInfo",
+        "https://messenger-clone-peach-two.vercel.app/api/userInfo",
         {
           cache: "no-store",
         }

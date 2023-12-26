@@ -1,6 +1,6 @@
 const io = require("socket.io")(8080, {
   cors: {
-    origin: ["messenger-clone-n60evtay3-gabry34.vercel.app"],
+    origin: ["https://messenger-clone-peach-two.vercel.app"],
   },
 });
 

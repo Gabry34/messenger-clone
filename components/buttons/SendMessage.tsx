@@ -55,7 +55,7 @@ export default function SendMessage({ userData, input, socket, images }: any) {
   const createChat = async () => {
     try {
       const res = await fetch(
-        "messenger-clone-n60evtay3-gabry34.vercel.app/api/message",
+        "https://messenger-clone-peach-two.vercel.app/api/message",
         {
           method: "POST",
           headers: {
@@ -88,7 +88,7 @@ export default function SendMessage({ userData, input, socket, images }: any) {
     try {
       // Fetch the chats
       const res = await fetch(
-        "messenger-clone-n60evtay3-gabry34.vercel.app/api/message",
+        "https://messenger-clone-peach-two.vercel.app/api/message",
         {
           cache: "no-store",
         }
@@ -111,7 +111,7 @@ export default function SendMessage({ userData, input, socket, images }: any) {
 
       // find chat informations
       const response = await fetch(
-        `messenger-clone-n60evtay3-gabry34.vercel.app/api/message/${findChat._id}`,
+        `https://messenger-clone-peach-two.vercel.app/api/message/${findChat._id}`,
         {
           cache: "no-store",
         }
@@ -134,7 +134,7 @@ export default function SendMessage({ userData, input, socket, images }: any) {
       // update chat messages
       try {
         const res = await fetch(
-          `messenger-clone-n60evtay3-gabry34.vercel.app/api/message/${findChat._id}`,
+          `https://messenger-clone-peach-two.vercel.app/api/message/${findChat._id}`,
           {
             method: "PUT",
             headers: {

@@ -34,7 +34,7 @@ export default function ChatterAvatar({
     const getUserInfo = async () => {
       try {
         const res = await fetch(
-          `messenger-clone-n60evtay3-gabry34.vercel.app/api/userInfo?email=${person}`,
+          `https://messenger-clone-peach-two.vercel.app/api/userInfo?email=${person}`,
           {
             cache: "no-store",
           }

@@ -21,7 +21,7 @@ export default function Messages({ userData, socket }: any) {
   const getChat = async () => {
     try {
       const res = await fetch(
-        "messenger-clone-n60evtay3-gabry34.vercel.app/api/message",
+        "https://messenger-clone-peach-two.vercel.app/api/message",
         {
           cache: "no-store",
         }

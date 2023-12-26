@@ -23,7 +23,7 @@ export default function Avatar({ expand, socket }: any) {
     const getUserInfo = async () => {
       try {
         const res = await fetch(
-          "messenger-clone-n60evtay3-gabry34.vercel.app/api/userInfo",
+          "https://messenger-clone-peach-two.vercel.app/api/userInfo",
           {
             cache: "no-store",
           }
