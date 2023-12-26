@@ -11,36 +11,22 @@ import { MdDoNotDisturbOff } from "react-icons/md";
 import { MdReportProblem } from "react-icons/md";
 import Link from "next/link";
 
-interface UserData {
-  name: string;
-  surname: string;
-  image?: string | null;
-}
-
-export default function RightContainer({ searchParams }: any) {
-  const [userData, setUserData] = useState<UserData | null>(null);
+export default function RightContainer({ userData }: any) {
   const [openMedia, setOpenMedia] = useState(false);
   const [openSupport, setOpenSupport] = useState(false);
-
-  useEffect(() => {
-    const storedUserData = localStorage.getItem("userData");
-    if (storedUserData) {
-      setUserData(JSON.parse(storedUserData));
-    }
-  }, [searchParams]);
 
   return (
     <div className="w-full h-full flex flex-col gap-5">
       <div className="pt-4 w-full flex flex-col gap-1 justify-center items-center">
-        {userData && userData.image === "DefaultImage" ? (
+        {userData.image && (
           <Image
-            src="/images/defaultImage.png"
+            src={userData.image}
             alt="image"
             height={70}
             width={70}
             className="rounded-full border-[1px]"
           />
-        ) : null}
+        )}
         {userData && (
           <h1 className="text-lg text-black font-semibold">
             {userData.name} {userData.surname}

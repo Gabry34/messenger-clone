@@ -9,22 +9,16 @@ export default function ChatterAvatar({
   participants,
   lastMessage,
   messageDeleted,
-  searchParams,
   chatId,
   isArchived,
+  userData,
+  socket,
 }: any) {
   const router = useRouter();
   const { data: session } = useSession();
   const [isHovered, setIsHovered] = useState(false);
   const [person, setPerson] = useState<any>("");
   const [userInfo, setUserInfo] = useState<any | null>(null);
-  const [userData, setUserData] = useState({
-    id: "",
-    name: "",
-    surname: "",
-    email: "",
-    image: "",
-  });
 
   useEffect(() => {
     const others = Object.values(participants).filter(
@@ -40,7 +34,7 @@ export default function ChatterAvatar({
     const getUserInfo = async () => {
       try {
         const res = await fetch(
-          `https://messenger-clone-peach-two.vercel.app/api/userInfo?email=${person}`,
+          `http://localhost:3000/api/userInfo?email=${person}`,
           {
             cache: "no-store",
           }
@@ -63,18 +57,6 @@ export default function ChatterAvatar({
       getUserInfo();
     }
   }, [person]);
-
-  useEffect(() => {
-    if (searchParams.w === "y") {
-      const storedUserData = localStorage.getItem("userData");
-      if (storedUserData) {
-        setUserData(JSON.parse(storedUserData));
-      }
-      router.push(
-        `/?section=${searchParams.section}&rightSide=${searchParams.rightSide}&w=n`
-      );
-    }
-  }, [searchParams, router]);
 
   return (
     <div
@@ -99,9 +81,7 @@ export default function ChatterAvatar({
           })
         );
 
-        router.push(
-          `https://messenger-clone-peach-two.vercel.app/?section=${searchParams.section}&rightSide=${searchParams.rightSide}&w=y`
-        );
+        socket.emit("get-user-data", 100);
       }}
     >
       {userInfo &&

@@ -14,12 +14,9 @@ export default function ArchiveChat({ isArchived, chatId }: any) {
 
   const archiveChat = async () => {
     try {
-      const res = await fetch(
-        "https://messenger-clone-peach-two.vercel.app/api/userInfo",
-        {
-          cache: "no-store",
-        }
-      );
+      const res = await fetch("http://localhost:3000/api/userInfo", {
+        cache: "no-store",
+      });
 
       const data = await res.json();
       const userInfos = data.userInfo;
@@ -39,7 +36,7 @@ export default function ArchiveChat({ isArchived, chatId }: any) {
           try {
             const updatedArchive = [...archived, chatId];
             const res = await fetch(
-              `https://messenger-clone-peach-two.vercel.app/api/userInfo/${userId}`,
+              `http://localhost:3000/api/userInfo/${userId}`,
               {
                 method: "PUT",
                 headers: {
@@ -68,12 +65,9 @@ export default function ArchiveChat({ isArchived, chatId }: any) {
 
   const unarchiveChat = async () => {
     try {
-      const res = await fetch(
-        "https://messenger-clone-peach-two.vercel.app/api/userInfo",
-        {
-          cache: "no-store",
-        }
-      );
+      const res = await fetch("http://localhost:3000/api/userInfo", {
+        cache: "no-store",
+      });
 
       const data = await res.json();
       const userInfos = data.userInfo;
@@ -93,7 +87,7 @@ export default function ArchiveChat({ isArchived, chatId }: any) {
           try {
             const updatedArchive = archived.filter((id) => id !== chatId);
             const res = await fetch(
-              `https://messenger-clone-peach-two.vercel.app/api/userInfo/${userId}`,
+              `http://localhost:3000/api/userInfo/${userId}`,
               {
                 method: "PUT",
                 headers: {

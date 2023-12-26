@@ -10,13 +10,12 @@ import {
   TbLayoutSidebarRightExpandFilled,
 } from "react-icons/tb";
 import { useSession } from "next-auth/react";
-import Link from "next/link";
 
 interface LateralNavProps {
   searchParams: any;
 }
 
-export default function LateralNav({ searchParams, passSection }: any) {
+export default function LateralNav({ socket, passSection }: any) {
   const [expand, setExpand] = useState(false);
   const [section, setSection] = useState("chat");
   const { data: session } = useSession();
@@ -32,7 +31,7 @@ export default function LateralNav({ searchParams, passSection }: any) {
     >
       <div className={`flex flex-col ${expand ? "w-full" : ""}`}>
         <div
-          className={`p-[10px] rounded-lg flex items-center gap-3 ${
+          className={`p-[10px] rounded-lg flex items-center gap-3 cursor-pointer ${
             section === "chat" ? "bg-[#F5F5F5]" : "bg-white"
           } ${
             expand ? "min-w-full justify-start" : "justify-center"
@@ -49,7 +48,7 @@ export default function LateralNav({ searchParams, passSection }: any) {
           {expand ? <h1 className="text-black font-medium">Chat</h1> : null}
         </div>
         <div
-          className={`p-[10px] rounded-lg flex items-center gap-3 ${
+          className={`p-[10px] rounded-lg flex items-center gap-3 cursor-pointer ${
             section === "people" ? "bg-[#F5F5F5]" : "bg-white"
           } ${
             expand ? "min-w-full justify-start" : "justify-center"
@@ -66,7 +65,7 @@ export default function LateralNav({ searchParams, passSection }: any) {
           {expand ? <h1 className="text-black font-medium">People</h1> : null}
         </div>
         <div
-          className={`p-[10px] rounded-lg flex items-center gap-3 ${
+          className={`p-[10px] rounded-lg flex items-center gap-3 cursor-pointer ${
             section === "marketplace" ? "bg-[#F5F5F5]" : "bg-white"
           } ${
             expand ? "min-w-full justify-start" : "justify-center"
@@ -85,7 +84,7 @@ export default function LateralNav({ searchParams, passSection }: any) {
           ) : null}
         </div>
         <div
-          className={`p-[10px] rounded-lg flex items-center gap-3 ${
+          className={`p-[10px] rounded-lg flex items-center gap-3 cursor-pointer ${
             section === "requests" ? "bg-[#F5F5F5]" : "bg-white"
           } ${
             expand ? "min-w-full justify-start" : "justify-center"
@@ -97,12 +96,12 @@ export default function LateralNav({ searchParams, passSection }: any) {
         >
           <IoChatbubbleEllipsesSharp
             size={20}
-            color={searchParams.section === "requests" ? "black" : "#65676B"}
+            color={section === "requests" ? "black" : "#65676B"}
           />
           {expand ? <h1 className="text-black font-medium">Requests</h1> : null}
         </div>
         <div
-          className={`p-[10px] rounded-lg flex items-center gap-3 ${
+          className={`p-[10px] rounded-lg flex items-center gap-3 cursor-pointer ${
             section === "archive" ? "bg-[#F5F5F5]" : "bg-white"
           } ${
             expand ? "min-w-full justify-start" : "justify-center"
@@ -114,7 +113,7 @@ export default function LateralNav({ searchParams, passSection }: any) {
         >
           <BsFillArchiveFill
             size={18}
-            color={searchParams.section === "archive" ? "black" : "#65676B"}
+            color={section === "archive" ? "black" : "#65676B"}
           />
           {expand ? <h1 className="text-black font-medium">Archive</h1> : null}
         </div>
@@ -129,7 +128,7 @@ export default function LateralNav({ searchParams, passSection }: any) {
             expand ? "w-fit" : "w-full"
           }`}
         >
-          <Avatar expand={expand} />
+          <Avatar expand={expand} socket={socket} />
           {expand ? (
             <h1 className="text-black mt-1">
               {session?.user?.name?.split(" ")[0]}

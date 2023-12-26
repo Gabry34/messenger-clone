@@ -15,19 +15,16 @@ import { FaFacebookMessenger } from "react-icons/fa";
 import { TbLogout } from "react-icons/tb";
 import Link from "next/link";
 
-export default function Avatar({ expand }: any) {
+export default function Avatar({ expand, socket }: any) {
   const { data: session } = useSession();
   const [image, setImage] = useState("");
 
   useEffect(() => {
     const getUserInfo = async () => {
       try {
-        const res = await fetch(
-          "https://messenger-clone-peach-two.vercel.app/api/userInfo",
-          {
-            cache: "no-store",
-          }
-        );
+        const res = await fetch("http://localhost:3000/api/userInfo", {
+          cache: "no-store",
+        });
 
         if (!res.ok) {
           throw new Error("Failed to fetch userInfo");
@@ -82,7 +79,17 @@ export default function Avatar({ expand }: any) {
       >
         <div className="popover-arrow bg-white rounded-br-sm"></div>
         <div className="w-full">
-          <PreferencesModal />
+          <div
+            className="w-full flex items-center gap-3 p-2 rounded-md cursor-pointer hover:bg-[#F9F9F9]"
+            onClick={() => {
+              socket.emit("open-preferences-modal");
+            }}
+          >
+            <div className="p-2 rounded-full bg-[#F5F5F5]">
+              <BsGearFill color={"black"} size={14} />
+            </div>
+            <h1 className="text-md font-semibold text-black">Preferences</h1>
+          </div>
 
           <div className="px-2 my-1 w-full h-[1px]">
             <div className="w-full h-full bg-gray-200"></div>

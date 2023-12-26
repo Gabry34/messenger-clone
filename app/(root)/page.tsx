@@ -12,36 +12,36 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
+import PreferencesModal from "@/components/modals/PreferencesModal";
 //up
-interface SearchParams {
-  searchParams: string;
-  section: string;
-  rightSide: string;
-}
 
-export default function Home({ searchParams }: { searchParams: SearchParams }) {
+export default function Home() {
   const { data: session, status } = useSession();
   const [userData, setUserData] = useState({});
   const [section, setSection] = useState("chat");
   const [rightSide, setRightSide] = useState("open");
   const router = useRouter();
   const socket = io("http://localhost:8080");
-  //up
+
+  if (status !== "loading") {
+    if (!session) {
+      router.push("/login");
+    }
+  }
+
+  socket.on("get-data", () => {
+    const storedUserData = localStorage.getItem("userData");
+    if (storedUserData) {
+      setUserData(JSON.parse(storedUserData));
+    }
+  });
 
   useEffect(() => {
-    const queryString = `/?section=chat&rightSide=open&`;
-    router.replace(queryString);
-  }, [router]);
-
-  // if (status !== "loading") {
-  //   if (!session) {
-  //     router.push("/login");
-  //   }
-  // }
-
-  const handleUserData = (data: any) => {
-    setUserData(data);
-  };
+    const storedUserData = localStorage.getItem("userData");
+    if (storedUserData) {
+      setUserData(JSON.parse(storedUserData));
+    }
+  }, []);
 
   const handleSection = (data: any) => {
     setSection(data);
@@ -50,6 +50,7 @@ export default function Home({ searchParams }: { searchParams: SearchParams }) {
   const handleRightSide = (data: string) => {
     setRightSide(data);
   };
+
   return (
     <main className="w-screen h-screen flex">
       {status === "loading" ? (
@@ -64,30 +65,24 @@ export default function Home({ searchParams }: { searchParams: SearchParams }) {
         </div>
       ) : (
         <div className="w-full max-h-screen flex overflow-y-scroll">
+          <PreferencesModal socket={socket} />
           <div className="w-fit h-full flex">
-            <LateralNav
-              searchParams={searchParams}
-              passSection={handleSection}
-            />
+            <LateralNav passSection={handleSection} socket={socket} />
             {section === "chat" ? (
-              <Chat
-                passUserData={handleUserData}
-                searchParams={searchParams}
-                socket={socket}
-              />
+              <Chat userData={userData} socket={socket} />
             ) : null}
             {section === "people" ? <People /> : null}
             {section === "marketplace" ? <Marketplace /> : null}
             {section === "requests" ? <Requests /> : null}
             {section === "archive" ? (
-              <Archive searchParams={searchParams} />
+              <Archive userData={userData} socket={socket} />
             ) : null}
           </div>
           <div className="h-full w-full">
             <MiddleChat
-              searchParams={searchParams}
               socket={socket}
               setStateRightSide={handleRightSide}
+              userData={userData}
             />
           </div>
           <div
@@ -95,7 +90,7 @@ export default function Home({ searchParams }: { searchParams: SearchParams }) {
               rightSide === "closed" ? "hidden" : ""
             } min-w-[380px] border-l`}
           >
-            <RightContainer searchParams={searchParams} />
+            <RightContainer userData={userData} />
           </div>
         </div>
       )}

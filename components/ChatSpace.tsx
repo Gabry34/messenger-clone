@@ -10,29 +10,8 @@ interface UserData {
   image?: string;
 }
 
-export default function ChatSpace({ searchParams, socket }: any) {
+export default function ChatSpace({ socket, userData }: any) {
   const router = useRouter();
-  const [userData, setUserData] = useState<UserData>({});
-
-  const getUserData = () => {
-    if (searchParams.w === "y") {
-      const storedUserData = localStorage.getItem("userData");
-      if (storedUserData) {
-        setUserData(JSON.parse(storedUserData));
-      }
-      router.push(
-        `/?section=${searchParams.section}&rightSide=${searchParams.rightSide}&w=n`
-      );
-    }
-  };
-
-  useEffect(() => {
-    getUserData();
-  }, [searchParams, router]);
-
-  useEffect(() => {
-    getUserData();
-  }, []);
 
   return (
     <div className="scroll-container h-full w-full">

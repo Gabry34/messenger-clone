@@ -1,15 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { signOut, useSession } from "next-auth/react";
+import React from "react";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { RiSendPlaneFill } from "react-icons/ri";
 
-export default function SendMessage({
-  userData,
-  input,
-  searchParams,
-  socket,
-  images,
-}: any) {
+export default function SendMessage({ userData, input, socket, images }: any) {
   const router = useRouter();
   const { data: session } = useSession();
 
@@ -60,26 +54,23 @@ export default function SendMessage({
 
   const createChat = async () => {
     try {
-      const res = await fetch(
-        "https://messenger-clone-peach-two.vercel.app/api/message",
-        {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify({
-            email1: session?.user?.email,
-            email2: userData.email,
-            id: generateId(),
-            by: session?.user?.email,
-            message: input,
-            time: getCurrentDate(),
-            seen: false,
-            images: images,
-            deleted: false,
-          }),
-        }
-      );
+      const res = await fetch("http://localhost:3000/api/message", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          email1: session?.user?.email,
+          email2: userData.email,
+          id: generateId(),
+          by: session?.user?.email,
+          message: input,
+          time: getCurrentDate(),
+          seen: false,
+          images: images,
+          deleted: false,
+        }),
+      });
       if (res.ok) {
         socket.emit("send-message", 200);
       } else new Error("Failed to create a Chat");
@@ -93,12 +84,9 @@ export default function SendMessage({
   const updateChat = async () => {
     try {
       // Fetch the chats
-      const res = await fetch(
-        "https://messenger-clone-peach-two.vercel.app/api/message",
-        {
-          cache: "no-store",
-        }
-      );
+      const res = await fetch("http://localhost:3000/api/message", {
+        cache: "no-store",
+      });
 
       const data = await res.json();
       const datas = data.chats;
@@ -117,7 +105,7 @@ export default function SendMessage({
 
       // find chat informations
       const response = await fetch(
-        `https://messenger-clone-peach-two.vercel.app/api/message/${findChat._id}`,
+        `http://localhost:3000/api/message/${findChat._id}`,
         {
           cache: "no-store",
         }
@@ -140,7 +128,7 @@ export default function SendMessage({
       // update chat messages
       try {
         const res = await fetch(
-          `https://messenger-clone-peach-two.vercel.app/api/message/${findChat._id}`,
+          `http://localhost:3000/api/message/${findChat._id}`,
           {
             method: "PUT",
             headers: {

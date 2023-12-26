@@ -1,6 +1,6 @@
 const io = require("socket.io")(8080, {
   cors: {
-    origin: ["https://messenger-clone-peach-two.vercel.app/"],
+    origin: ["http://localhost:3000"],
   },
 });
 
@@ -12,5 +12,24 @@ io.on("connection", (socket) => {
   });
   socket.on("scroll-down", () => {
     io.emit("scroll");
+  });
+  socket.on("get-user-data", () => {
+    // Creare una stanza unica per il socket corrente
+    const userRoom = socket.id;
+
+    // Unire il socket corrente alla stanza
+    socket.join(userRoom);
+
+    // Emettere l'evento solo alla stanza del socket corrente
+    io.to(userRoom).emit("get-data");
+  });
+  socket.on("open-preferences-modal", () => {
+    const userRoom = socket.id;
+
+    // Unire il socket corrente alla stanza
+    socket.join(userRoom);
+
+    // Emettere l'evento solo alla stanza del socket corrente
+    io.to(userRoom).emit("open-modal");
   });
 });

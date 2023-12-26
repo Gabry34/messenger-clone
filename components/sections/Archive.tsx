@@ -10,19 +10,16 @@ interface Chat {
   email2: string;
 }
 
-export default function Marketplace({ searchParams }: any) {
+export default function Marketplace({ userData, socket }: any) {
   const { data: session } = useSession();
   const [chats, setChats] = useState<Chat[]>([]);
   const [archived, setArchived] = useState<string[]>([]);
 
   const getChats = async () => {
     try {
-      const res = await fetch(
-        "https://messenger-clone-peach-two.vercel.app/api/message",
-        {
-          cache: "no-store",
-        }
-      );
+      const res = await fetch("http://localhost:3000/api/message", {
+        cache: "no-store",
+      });
       if (!res.ok) {
         throw new Error("Failed to fetch userInfo");
       }
@@ -36,12 +33,9 @@ export default function Marketplace({ searchParams }: any) {
 
   const getArchivedChats = async () => {
     try {
-      const res = await fetch(
-        "https://messenger-clone-peach-two.vercel.app/api/userInfo",
-        {
-          cache: "no-store",
-        }
-      );
+      const res = await fetch("http://localhost:3000/api/userInfo", {
+        cache: "no-store",
+      });
 
       const data = await res.json();
       const userInfos = data.userInfo;
@@ -80,7 +74,6 @@ export default function Marketplace({ searchParams }: any) {
                   <div className="w-full">
                     <ChatterAvatar
                       participants={chat.participants}
-                      searchParams={searchParams}
                       lastMessage={
                         chat.messages.length > 0
                           ? chat.messages[chat.messages.length - 1].message ||
@@ -89,6 +82,8 @@ export default function Marketplace({ searchParams }: any) {
                       }
                       chatId={chat._id}
                       isArchived={true}
+                      userData={userData}
+                      socket={socket}
                     />
                   </div>
                 ) : null}

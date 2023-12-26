@@ -30,7 +30,7 @@ interface Chat {
   email2: string;
 }
 
-export default function Chat({ passUserData, searchParams, socket }: any) {
+export default function Chat({ socket, userData }: any) {
   const router = useRouter();
   const { data: session } = useSession();
   const [users, setUsers] = useState<User[]>([]);
@@ -38,30 +38,12 @@ export default function Chat({ passUserData, searchParams, socket }: any) {
   const [openSearch, setOpenSearch] = useState("closed");
   const [input, setInput] = useState("");
   const [archivedChats, setArchivedChats] = useState<string[]>([]);
-  const [userData, setUserData] = useState({
-    id: "",
-    name: "",
-    surname: "",
-    email: "",
-    image: "",
-  });
-
-  useEffect(() => {
-    if (searchParams.w === "y") {
-      router.push(
-        `/?section=${searchParams.section}&rightSide=${searchParams.rightSide}&w=n`
-      );
-    }
-  }, [searchParams, router]);
 
   const getUserInfo = async () => {
     try {
-      const res = await fetch(
-        "https://messenger-clone-peach-two.vercel.app/api/userInfo",
-        {
-          cache: "no-store",
-        }
-      );
+      const res = await fetch("http://localhost:3000/api/userInfo", {
+        cache: "no-store",
+      });
       if (!res.ok) {
         throw new Error("Failed to fetch userInfo");
       }
@@ -80,12 +62,9 @@ export default function Chat({ passUserData, searchParams, socket }: any) {
 
   const getChats = async () => {
     try {
-      const res = await fetch(
-        "https://messenger-clone-peach-two.vercel.app/api/message",
-        {
-          cache: "no-store",
-        }
-      );
+      const res = await fetch("http://localhost:3000/api/message", {
+        cache: "no-store",
+      });
       if (!res.ok) {
         throw new Error("Failed to fetch userInfo");
       }
@@ -194,7 +173,7 @@ export default function Chat({ passUserData, searchParams, socket }: any) {
                   setOpenSearch("closed");
 
                   router.push(
-                    `https://messenger-clone-peach-two.vercel.app/?section=${searchParams.section}&rightSide=${searchParams.rightSide}`
+                    `http://localhost:3000/?section=${searchParams.section}&rightSide=${searchParams.rightSide}`
                   );
                 }}
               >
@@ -232,7 +211,6 @@ export default function Chat({ passUserData, searchParams, socket }: any) {
                       <div>
                         <ChatterAvatar
                           participants={chat.participants}
-                          searchParams={searchParams}
                           lastMessage={
                             chat.messages.length > 0
                               ? chat.messages[chat.messages.length - 1]
@@ -247,6 +225,8 @@ export default function Chat({ passUserData, searchParams, socket }: any) {
                           }
                           chatId={chat._id}
                           isArchived={false}
+                          userData={userData}
+                          socket={socket}
                         />
                       </div>
                     ) : null}

@@ -7,8 +7,6 @@ import { IoIosAddCircle } from "react-icons/io";
 import { FaRegImage } from "react-icons/fa6";
 import { BsStickyFill } from "react-icons/bs";
 import { HiMiniGif } from "react-icons/hi2";
-import { BsEmojiNeutralFill } from "react-icons/bs";
-import { BsFillEmojiSmileFill } from "react-icons/bs";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import ChatSpace from "./ChatSpace";
 import SendMessage from "./buttons/SendMessage";
@@ -17,31 +15,17 @@ import Link from "next/link";
 import DefaultImage from "@/public/images/defaultmage.png";
 import Images from "./dropdowns/Images";
 
-interface UserData {
-  name?: string;
-  surname?: string;
-  image?: string;
-}
-
 export default function MiddleChat({
-  searchParams,
   socket,
   setStateRightSide,
+  userData,
 }: any) {
   const [input, setInput] = useState("");
-  const [userData, setUserData] = useState<UserData>({});
   const [filePopupVisible, setFilePopupVisible] = useState(false);
   const [selectedFile, setSelectedFile] = useState<any>("");
   const [images, setImages] = useState([]);
   const [resetImages, setResetImages] = useState<boolean[]>([]);
   const [rightSide, setRightSide] = useState("open");
-
-  useEffect(() => {
-    const storedUserData = localStorage.getItem("userData");
-    if (storedUserData) {
-      setUserData(JSON.parse(storedUserData));
-    }
-  }, [searchParams]);
 
   const scrollToBottom = () => {
     const scrollContainer = document.getElementById("scroll-container");
@@ -153,7 +137,7 @@ export default function MiddleChat({
         id="scroll-container"
         className="scroll-container flex-grow overflow-y-scroll hide-scrollbar"
       >
-        <ChatSpace searchParams={searchParams} socket={socket} />
+        <ChatSpace socket={socket} userData={userData} />
       </div>
       <div className="w-full flex items-center gap-4 px-4 pb-1">
         <div className="">
@@ -238,7 +222,6 @@ export default function MiddleChat({
             <SendMessage
               userData={userData}
               input={input}
-              searchParams={searchParams}
               socket={socket}
               images={images}
             />
