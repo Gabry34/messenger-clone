@@ -26,6 +26,7 @@ export default function Home({ searchParams }: { searchParams: SearchParams }) {
   const [rightSide, setRightSide] = useState("open");
   const router = useRouter();
   const socket = io("http://localhost:8080");
+  //up
 
   useEffect(() => {
     const queryString = `/?section=chat&rightSide=open&`;
