@@ -41,9 +41,12 @@ export default function Chat({ socket, userData }: any) {
 
   const getUserInfo = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/userInfo", {
-        cache: "no-store",
-      });
+      const res = await fetch(
+        "messenger-clone-n60evtay3-gabry34.vercel.app/api/userInfo",
+        {
+          cache: "no-store",
+        }
+      );
       if (!res.ok) {
         throw new Error("Failed to fetch userInfo");
       }
@@ -62,9 +65,12 @@ export default function Chat({ socket, userData }: any) {
 
   const getChats = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/message", {
-        cache: "no-store",
-      });
+      const res = await fetch(
+        "messenger-clone-n60evtay3-gabry34.vercel.app/api/message",
+        {
+          cache: "no-store",
+        }
+      );
       if (!res.ok) {
         throw new Error("Failed to fetch userInfo");
       }
@@ -172,9 +178,7 @@ export default function Chat({ socket, userData }: any) {
                   setInput("");
                   setOpenSearch("closed");
 
-                  router.push(
-                    `http://localhost:3000/?section=${searchParams.section}&rightSide=${searchParams.rightSide}`
-                  );
+                  socket.emit("get-user-data", 100);
                 }}
               >
                 {user.image === "DefaultImage" ? (

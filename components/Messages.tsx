@@ -20,9 +20,12 @@ export default function Messages({ userData, socket }: any) {
 
   const getChat = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/message", {
-        cache: "no-store",
-      });
+      const res = await fetch(
+        "messenger-clone-n60evtay3-gabry34.vercel.app/api/message",
+        {
+          cache: "no-store",
+        }
+      );
       if (!res.ok) {
         throw new Error("Failed to fetch Chats");
       }

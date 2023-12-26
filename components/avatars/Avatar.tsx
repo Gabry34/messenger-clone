@@ -22,9 +22,12 @@ export default function Avatar({ expand, socket }: any) {
   useEffect(() => {
     const getUserInfo = async () => {
       try {
-        const res = await fetch("http://localhost:3000/api/userInfo", {
-          cache: "no-store",
-        });
+        const res = await fetch(
+          "messenger-clone-n60evtay3-gabry34.vercel.app/api/userInfo",
+          {
+            cache: "no-store",
+          }
+        );
 
         if (!res.ok) {
           throw new Error("Failed to fetch userInfo");
