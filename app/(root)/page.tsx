@@ -21,7 +21,7 @@ export default function Home() {
   const [section, setSection] = useState("chat");
   const [rightSide, setRightSide] = useState("open");
   const router = useRouter();
-  const socket = io("http://localhost:8080");
+  const socket = io("https://tranquil-beach-60657-dc67d0e54ddf.herokuapp.com/");
 
   if (status !== "loading") {
     if (!session) {
