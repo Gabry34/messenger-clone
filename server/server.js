@@ -1,5 +1,8 @@
-const io = require("socket.io")();
-// https://messenger-clone-peach-two.vercel.app
+const io = require("socket.io")(process.env.PORT || 8080, {
+  cors: {
+    origin: ["https://messenger-clone-peach-two.vercel.app"],
+  },
+});
 
 io.on("connection", (socket) => {
   console.log(socket.id);
@@ -30,5 +33,3 @@ io.on("connection", (socket) => {
     io.to(userRoom).emit("open-modal");
   });
 });
-
-io.listen(process.env.PORT || 8080);
