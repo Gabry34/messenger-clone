@@ -21,7 +21,7 @@ export default function Home() {
   const [section, setSection] = useState("chat");
   const [rightSide, setRightSide] = useState("open");
   const router = useRouter();
-  const socket = io("https://tranquil-beach-60657-dc67d0e54ddf.herokuapp.com/");
+  const socket = io("https://radiant-ridge-08931-e64149440957.herokuapp.com/");
 
   if (status !== "loading") {
     if (!session) {
