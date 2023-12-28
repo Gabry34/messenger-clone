@@ -1,12 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { RiSendPlaneFill } from "react-icons/ri";
 
 export default function SendMessage({ userData, socket }: any) {
-  const router = useRouter();
   const { data: session } = useSession();
-
+  const [loading, setLoading] = useState(false);
   // Generate id
 
   function generateId() {
@@ -163,18 +160,36 @@ export default function SendMessage({ userData, socket }: any) {
   const sendMessage = () => {
     createChat();
     updateChat();
+    loadingMessage();
+  };
+
+  const loadingMessage = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
   };
 
   return (
     <div>
-      <h1
-        className="cursor-pointer select-none text-lg"
-        onClick={() => {
-          sendMessage();
-        }}
-      >
-        😂
-      </h1>
+      {loading ? (
+        <svg
+          className="spinner-ring w-6 h-6"
+          viewBox="25 25 50 50"
+          strokeWidth="5"
+        >
+          <circle cx="50" cy="50" r="20" />
+        </svg>
+      ) : (
+        <h1
+          className="cursor-pointer select-none text-lg"
+          onClick={() => {
+            sendMessage();
+          }}
+        >
+          😂
+        </h1>
+      )}
     </div>
   );
 }
