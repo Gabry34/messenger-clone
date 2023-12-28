@@ -102,7 +102,7 @@ export default function ChatterAvatar({
             className="rounded-full border-[1px] border-[#BCBFC4] cursor-pointer opacity-90 hover:opacity-100"
           />
         ))}
-      <div>
+      <div className="lg:hidden">
         <h1 className="font-medium text-black">
           {userInfo && `${userInfo.name} ${userInfo.surname}`}
         </h1>
@@ -132,7 +132,7 @@ export default function ChatterAvatar({
       <div
         className={`absolute w-[310px] h-[50px] flex justify-end items-center pr-6 ${
           isHovered ? "block" : "hidden"
-        }`}
+        } lg:hidden`}
       >
         <ChatDropdown
           chatId={chatId}

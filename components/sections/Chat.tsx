@@ -106,16 +106,16 @@ export default function Chat({ socket, userData }: any) {
     }
   });
   return (
-    <div className="h-full w-[360px] flex flex-col border-r pt-3">
+    <div className="h-full w-[360px] flex flex-col border-r pt-3 lg:w-[90px]">
       <div className="px-2">
-        <div className="flex justify-between items-center pb-3">
+        <div className="flex justify-between items-center pb-3 lg:hidden">
           <h1 className="text-black text-2xl font-bold pl-5">Chat</h1>
           <div className="flex justify-center items-center rounded-full bg-[#F5F5F5] p-2 mr-2 cursor-not-allowed">
             <FiEdit color={"black"} size={20} />
           </div>
         </div>
 
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1 lg:hidden">
           {openSearch === "open" ? (
             <div
               className="flex items-center justify-center p-[9px] cursor-pointer rounded-full hover:bg-[#F3F3F5]"
@@ -143,7 +143,7 @@ export default function Chat({ socket, userData }: any) {
           </div>
         </div>
       </div>
-      <div className="scroll-container w-full h-full overflow-y-scroll mt-1 px-2">
+      <div className="scroll-container w-full h-full overflow-y-scroll mt-1 px-2 lg:overflow-y-hidden">
         {openSearch === "open" ? (
           <div>
             {input ? (
@@ -249,7 +249,7 @@ export default function Chat({ socket, userData }: any) {
           rel="noopener noreferrer"
         >
           <MdInstallDesktop size={20} color={"black"} />
-          <h1 className="text-black text-[15px] font-semibold">
+          <h1 className="text-black text-[15px] font-semibold lg:hidden">
             Try Messenger for Windows
           </h1>
         </Link>
