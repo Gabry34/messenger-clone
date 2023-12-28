@@ -10,6 +10,7 @@ import { HiMiniGif } from "react-icons/hi2";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import ChatSpace from "./ChatSpace";
 import SendMessage from "./buttons/SendMessage";
+import SendDefaultEmoji from "./buttons/SendDefaultEmoji";
 import Emojis from "./dropdowns/Emojis";
 import Link from "next/link";
 import DefaultImage from "@/public/images/defaultmage.png";
@@ -228,7 +229,7 @@ export default function MiddleChat({
           </div>
         ) : (
           <div>
-            <h1 className="text-xl cursor-pointer">😂</h1>
+            <SendDefaultEmoji userData={userData} socket={socket} />
           </div>
         )}
       </div>

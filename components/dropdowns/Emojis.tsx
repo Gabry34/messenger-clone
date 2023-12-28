@@ -22,7 +22,10 @@ export default function Emojis({ passEmoji }: any) {
 
   return (
     <div className="popover">
-      <label className="popover-trigger cursor-pointer text-md" tabIndex={0}>
+      <label
+        className="popover-trigger cursor-pointer text-md select-none"
+        tabIndex={0}
+      >
         😄
       </label>
       <div
