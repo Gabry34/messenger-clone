@@ -106,7 +106,7 @@ export default function Chat({ socket, userData }: any) {
     }
   });
   return (
-    <div className="h-full w-[360px] flex flex-col border-r pt-3 lg:w-[90px]">
+    <div className="h-full w-[360px] flex flex-col border-r pt-3 lg:w-[80px]">
       <div className="px-2">
         <div className="flex justify-between items-center pb-3 lg:hidden">
           <h1 className="text-black text-2xl font-bold pl-5">Chat</h1>

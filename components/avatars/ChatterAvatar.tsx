@@ -68,7 +68,7 @@ export default function ChatterAvatar({
             ? "bg-[#F5F5F5]"
             : null
           : null
-      } lg:justify-center`}
+      }`}
       onClick={() => {
         localStorage.setItem(
           "userData",
