@@ -8,7 +8,7 @@ import Requests from "@/components/sections/Requests";
 import Archive from "@/components/sections/Archive";
 import MiddleChat from "@/components/MiddleChat";
 import RightContainer from "@/components/RightContainer";
-import MobilePage from "@/components/mobile/mobilePage";
+import MobilePage from "@/components/mobile/MobilePage";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
