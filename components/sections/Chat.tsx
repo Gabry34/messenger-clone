@@ -149,7 +149,7 @@ export default function Chat({ socket, userData }: any) {
             <IoSearch size={21} color={"#C2C2C4"} />
             <input
               type="text"
-              placeholder={windowWidth > 900 && `Search Messenger`}
+              placeholder={windowWidth > 900 ? `Search Messenger` : ""}
               className="bg-transparent outline-none text-black"
               value={input}
               onClick={() => {
