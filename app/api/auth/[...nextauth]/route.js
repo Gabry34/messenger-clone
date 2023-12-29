@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import FacebookProvider from "next-auth/providers/facebook";
 import mongoose from "mongoose";
 import User from "@/models/user";
 import UserInfo from "@/models/userInfo";
@@ -13,6 +14,10 @@ const authOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
+    FacebookProvider({
+      clientId: process.env.FACEBOOK_CLIENT_ID,
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+    }),
     // Add other providers if needed
   ],
   callbacks: {
@@ -25,7 +30,7 @@ const authOptions = {
         await connectMongoDB("authentication");
 
         // Check if the sign-in is done with the Google provider
-        if (account.provider === "google") {
+        if (account.provider === "google" || account.provider === "facebook") {
           const userExist = await User.findOne({ email: profile.email });
 
           if (!userExist) {

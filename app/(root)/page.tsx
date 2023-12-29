@@ -24,11 +24,11 @@ export default function Home() {
   const [rightSide, setRightSide] = useState("open");
   const socket = io("https://radiant-ridge-08931-e64149440957.herokuapp.com/");
 
-  // if (status !== "loading") {
-  //   if (!session) {
-  //     router.push("/login");
-  //   }
-  // }
+  if (status !== "loading") {
+    if (!session) {
+      router.push("/login");
+    }
+  }
 
   socket.on("get-data", () => {
     const storedUserData = localStorage.getItem("userData");
