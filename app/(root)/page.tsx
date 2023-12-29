@@ -20,8 +20,23 @@ export default function Home() {
   const [userData, setUserData] = useState({});
   const [section, setSection] = useState("chat");
   const [rightSide, setRightSide] = useState("open");
-  const router = useRouter();
   const socket = io("https://radiant-ridge-08931-e64149440957.herokuapp.com/");
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 900) {
+        setRightSide("closed");
+      } else {
+        setRightSide("open");
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   // if (status !== "loading") {
   //   if (!session) {
@@ -88,7 +103,7 @@ export default function Home() {
           <div
             className={`${
               rightSide === "closed" ? "hidden" : ""
-            } min-w-[380px] border-l`}
+            } min-w-[380px] border-l lg:min-w-[270px]`}
           >
             <RightContainer userData={userData} />
           </div>

@@ -136,7 +136,7 @@ export default function LateralNav({ socket, passSection }: any) {
           ) : null}
         </div>
         {expand ? (
-          <div className="p-[6px] bg-[#F5F5F5] rounded-full flex justify-center items-center">
+          <div className="p-[6px] bg-[#F5F5F5] rounded-full flex justify-center items-center lg:hidden">
             <TbLayoutSidebarRightExpandFilled
               size={24}
               color={"black"}
@@ -147,7 +147,7 @@ export default function LateralNav({ socket, passSection }: any) {
             />
           </div>
         ) : (
-          <div className="p-[6px] bg-[#F5F5F5] rounded-full flex justify-center items-center">
+          <div className="p-[6px] bg-[#F5F5F5] rounded-full flex justify-center items-center lg:hidden">
             <TbLayoutSidebarLeftExpandFilled
               size={24}
               color={"black"}

@@ -38,6 +38,25 @@ export default function Chat({ socket, userData }: any) {
   const [openSearch, setOpenSearch] = useState("closed");
   const [input, setInput] = useState("");
   const [archivedChats, setArchivedChats] = useState<string[]>([]);
+  const [windowWidth, setWindowWidth] = useState<number>(
+    typeof window !== "undefined" ? window.innerWidth : 0
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(typeof window !== "undefined" ? window.innerWidth : 0);
+    };
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", handleResize);
+    }
+
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("resize", handleResize);
+      }
+    };
+  }, []);
 
   const getUserInfo = async () => {
     try {
@@ -115,7 +134,7 @@ export default function Chat({ socket, userData }: any) {
           </div>
         </div>
 
-        <div className="flex items-center gap-1 lg:hidden">
+        <div className="flex items-center gap-1">
           {openSearch === "open" ? (
             <div
               className="flex items-center justify-center p-[9px] cursor-pointer rounded-full hover:bg-[#F3F3F5]"
@@ -130,7 +149,7 @@ export default function Chat({ socket, userData }: any) {
             <IoSearch size={21} color={"#C2C2C4"} />
             <input
               type="text"
-              placeholder="Search Messenger"
+              placeholder={windowWidth > 900 && `Search Messenger`}
               className="bg-transparent outline-none text-black"
               value={input}
               onClick={() => {
