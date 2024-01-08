@@ -17,7 +17,9 @@ export default function LoginPage() {
   return (
     <div className="w-full h-screen flex flex-col justify-center items-center gap-10">
       <Image src={logoImage} alt="logo" width={80} height={80} />
-      <h1 className="text-black text-4xl">Connect with the people you love.</h1>
+      <h1 className="text-black text-4xl text-center">
+        Connect with the people you love.
+      </h1>
       <div className="flex flex-col gap-2 w-[300px]">
         <button
           className="w-full flex items-center justify-center gap-2 border py-2 rounded-md"
