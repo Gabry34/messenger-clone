@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ReactNode } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import "@/app/globals.css";
 import Provider from "@/context/Provider";
 
@@ -12,7 +12,10 @@ export default function RootLayout({ children, session }: any) {
   return (
     <html lang="en">
       <Provider session={session}>
-        <body>{children}</body>
+        <body>
+          {children}
+          <Analytics />
+        </body>
       </Provider>
     </html>
   );

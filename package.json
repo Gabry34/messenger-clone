@@ -10,6 +10,7 @@
     "server": "nodemon server.js"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.1.1",
     "aws4": "^1.12.0",
     "mongodb": "^6.3.0",
     "mongoose": "^8.0.1",
