@@ -16,7 +16,7 @@ export default function LoginPage() {
   }
   return (
     <div className="w-full h-screen flex flex-col justify-center items-center gap-10">
-      <Image src={logoImage} alt="logo" width={80} height={80} />
+      <img src={logoImage} alt="logo" width={80} height={80} />
       <h1 className="text-black text-4xl text-center">
         Connect with the people you love.
       </h1>

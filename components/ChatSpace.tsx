@@ -17,7 +17,7 @@ export default function ChatSpace({ socket, userData }: any) {
     <div className="scroll-container h-full w-full">
       <div className="pt-10 w-full flex flex-col gap-1 justify-center items-center">
         {userData.image === "DefaultImage" ? (
-          <Image
+          <img
             src={DefaultImage}
             alt="image"
             height={60}
@@ -25,7 +25,7 @@ export default function ChatSpace({ socket, userData }: any) {
             className="rounded-full border-[1px]"
           />
         ) : !userData.image ? null : (
-          <Image
+          <img
             src={userData.image}
             alt="image"
             height={60}
