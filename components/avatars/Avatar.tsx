@@ -58,7 +58,7 @@ export default function Avatar({ expand, socket }: any) {
       >
         {image === "DefaultImage" ? (
           <img
-            ssrc={(DefaultImage as StaticImageData).src}
+            src={(DefaultImage as StaticImageData).src}
             alt="image"
             height={32}
             width={32}
