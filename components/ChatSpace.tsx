@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
+import { StaticImageData } from "next/image";
 import DefaultImage from "@/public/images/defaultmage.png";
 import Messages from "./Messages";
 import { useRouter } from "next/navigation";
@@ -18,7 +18,7 @@ export default function ChatSpace({ socket, userData }: any) {
       <div className="pt-10 w-full flex flex-col gap-1 justify-center items-center">
         {userData.image === "DefaultImage" ? (
           <img
-            src={DefaultImage}
+            src={(DefaultImage as StaticImageData).src}
             alt="image"
             height={60}
             width={60}
