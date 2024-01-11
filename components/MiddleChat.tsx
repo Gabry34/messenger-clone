@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
+import { StaticImageData } from "next/image";
 import { GiPhone } from "react-icons/gi";
 import { IoVideocam } from "react-icons/io5";
 import { PiDotsThreeCircleFill } from "react-icons/pi";
@@ -74,15 +74,15 @@ export default function MiddleChat({
           rel="noopener noreferrer"
         >
           {userData.image === "DefaultImage" ? (
-            <Image
-              src={DefaultImage}
+            <img
+              src={(DefaultImage as StaticImageData).src}
               alt="image"
               height={30}
               width={30}
               className="rounded-full border-[1px]"
             />
           ) : !userData.image ? null : (
-            <Image
+            <img
               src={userData.image}
               alt="image"
               height={38}

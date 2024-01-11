@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import DeleteMessage from "./buttons/DeleteMessage";
-import Image from "next/image";
 
 interface Messages {
   _id: string;
@@ -93,7 +92,7 @@ export default function Messages({ userData, socket }: any) {
                     {!message.deleted && (
                       <div className="flex flex-col">
                         {message.images.map((image: string, index: number) => (
-                          <Image
+                          <img
                             key={index}
                             src={image}
                             alt="image"
@@ -163,7 +162,7 @@ export default function Messages({ userData, socket }: any) {
                     {!message.deleted && (
                       <div className="flex flex-col">
                         {message.images.map((image: string, index: number) => (
-                          <Image
+                          <img
                             key={index}
                             src={image}
                             alt="image"

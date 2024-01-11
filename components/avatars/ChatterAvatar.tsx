@@ -1,5 +1,5 @@
 import { useSession } from "next-auth/react";
-import Image from "next/image";
+import { StaticImageData } from "next/image";
 import ChatDropdown from "../dropdowns/ChatDropdown";
 import React, { useEffect, useState } from "react";
 import DefaultImage from "@/public/images/defaultmage.png";
@@ -86,15 +86,15 @@ export default function ChatterAvatar({
     >
       {userInfo &&
         (userInfo.image === "DefaultImage" ? (
-          <Image
-            src={DefaultImage}
+          <img
+            src={(DefaultImage as StaticImageData).src}
             alt="image"
             height={46}
             width={46}
             className="rounded-full border-[1px] border-[#BCBFC4] cursor-pointer opacity-90 hover:opacity-100"
           />
         ) : (
-          <Image
+          <img
             src={userInfo.image}
             alt="image"
             height={46}

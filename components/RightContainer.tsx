@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { ImSearch } from "react-icons/im";
 import { FaFacebook } from "react-icons/fa";
@@ -19,7 +18,7 @@ export default function RightContainer({ userData }: any) {
     <div className="w-full h-full flex flex-col gap-5">
       <div className="pt-4 w-full flex flex-col gap-1 justify-center items-center">
         {userData.image && (
-          <Image
+          <img
             src={userData.image}
             alt="image"
             height={70}

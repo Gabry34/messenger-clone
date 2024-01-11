@@ -42,7 +42,7 @@ export default function PreferencesModal({ socket }: any) {
             <div className="border-b mx-3 pt-2 flex flex-col gap-1">
               <h1 className="text-black font-medium pl-2">Account</h1>
               <div className="w-full flex items-center gap-2 px-2 py-2 rounded-md cursor-pointer hover:bg-[#F5F5F5]">
-                <Image
+                <img
                   src={session?.user?.image as string}
                   alt="profile image"
                   width={58}

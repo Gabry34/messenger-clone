@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { StaticImageData } from "next/image";
 import DefaultImage from "@/public/images/defaultmage.png";
 import Messages from "./Messages";

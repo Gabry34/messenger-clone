@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import React from "react";
 import logoImage from "@/public/images/logo.svg";
 import { FaFacebook } from "react-icons/fa";

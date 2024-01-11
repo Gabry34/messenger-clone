@@ -10,7 +10,7 @@ export default function MobilePage() {
   return (
     <div className="w-screen h-screen flex flex-col">
       <div className="w-full flex justify-between items-center px-10 py-10">
-        <Image src="/images/logo.svg" alt="logo" width={32} height={32} />
+        <img src="/images/logo.svg" alt="logo" width={32} height={32} />
         <div
           onClick={() => {
             setOpenLinks(!openLinks);

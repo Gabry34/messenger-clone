@@ -2,8 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useSession, signOut } from "next-auth/react";
-import Image from "next/image";
-import PreferencesModal from "../modals/PreferencesModal";
+import { StaticImageData } from "next/image";
 import DefaultImage from "@/public/images/defaultmage.png";
 import { BsGearFill } from "react-icons/bs";
 import { MdDoNotDisturbOff } from "react-icons/md";
@@ -58,15 +57,15 @@ export default function Avatar({ expand, socket }: any) {
         tabIndex={0}
       >
         {image === "DefaultImage" ? (
-          <Image
-            src={DefaultImage}
+          <img
+            ssrc={(DefaultImage as StaticImageData).src}
             alt="image"
             height={32}
             width={32}
             className="rounded-full border-[1px] border-[#BCBFC4] cursor-pointer opacity-90 hover:opacity-100"
           />
         ) : (
-          <Image
+          <img
             src={image}
             alt="image"
             height={34}

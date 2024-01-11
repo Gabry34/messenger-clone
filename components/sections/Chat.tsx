@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { StaticImageData } from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import ChatterAvatar from "../avatars/ChatterAvatar";
@@ -201,15 +201,15 @@ export default function Chat({ socket, userData }: any) {
                 }}
               >
                 {user.image === "DefaultImage" ? (
-                  <Image
-                    src={DefaultImage}
+                  <img
+                    src={(DefaultImage as StaticImageData).src}
                     alt="image"
                     height={34}
                     width={34}
                     className="rounded-full border-[1px] border-[#BCBFC4] cursor-pointer opacity-90 hover:opacity-100"
                   />
                 ) : (
-                  <Image
+                  <img
                     src={user.image}
                     alt="image"
                     height={34}
